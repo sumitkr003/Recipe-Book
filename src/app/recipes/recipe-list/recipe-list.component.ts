@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { Recipe } from "../recipe.model";
 
 @Component({
@@ -7,15 +7,21 @@ import { Recipe } from "../recipe.model";
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
+  @Output() RecipeWasSelected = new EventEmitter<Recipe>();
+
   recipes: Recipe[] = [
-    new Recipe('Test Recipe','this is a simple test recipe ','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHOEcN1PmX8lcsBarl0M_ERjXvqL0ctygJoZjl9P7HX4Pk_hoVng'),
-    new Recipe('Test Recipe','this is a simple test recipe','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHOEcN1PmX8lcsBarl0M_ERjXvqL0ctygJoZjl9P7HX4Pk_hoVng'),
-    new Recipe('Test Recipe','this is a simple test recipe','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHOEcN1PmX8lcsBarl0M_ERjXvqL0ctygJoZjl9P7HX4Pk_hoVng')
+    new Recipe('Test Recipe', 'this is a simple test recipe ', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHOEcN1PmX8lcsBarl0M_ERjXvqL0ctygJoZjl9P7HX4Pk_hoVng'),
+    new Recipe('Test Recipe', 'this is a simple test recipe', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHOEcN1PmX8lcsBarl0M_ERjXvqL0ctygJoZjl9P7HX4Pk_hoVng'),
+    new Recipe('Test Recipe', 'this is a simple test recipe', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHOEcN1PmX8lcsBarl0M_ERjXvqL0ctygJoZjl9P7HX4Pk_hoVng')
   ];
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onRecipeSelected(SelectedRecipe: Recipe){
+    this.RecipeWasSelected.emit(SelectedRecipe);
   }
 
 }
